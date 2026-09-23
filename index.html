@@ -1,3 +1,4 @@
+html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,4 +25,462 @@
     justify-content: center;
     background: var(--bg);
     color: var(--text);
-    font-family: -apple-system,
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+
+  .stack {
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: auto;
+  }
+
+  .card {
+    width: 100%;
+    background: var(--card);
+    border-radius: 16px;
+    padding: 48px 36px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    font-size: 2.25rem;
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    margin: 0 0 32px;
+    font-size: 1rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  li {
+    background: rgba(124, 156, 255, 0.08);
+    border: 1px solid rgba(124, 156, 255, 0.2);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 1.05rem;
+  }
+
+  a.button, button.button {
+    display: inline-block;
+    color: var(--bg);
+    background: var(--accent);
+    text-decoration: none;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  a.button:hover, button.button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(124, 156, 255, 0.35);
+  }
+
+  .dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 140px;
+    border: 2px dashed rgba(124, 156, 255, 0.35);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 0.95rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+
+  .dropzone:hover,
+  .dropzone.drag-over {
+    border-color: var(--accent);
+    background: rgba(124, 156, 255, 0.06);
+  }
+
+  .dropzone img {
+    max-width: 100%;
+    max-height: 180px;
+    border-radius: 8px;
+  }
+
+  .info-list {
+    margin: 0 0 24px;
+  }
+
+  .info-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+
+  .info-list li span:first-child {
+    color: var(--muted);
+  }
+
+  .info-list strong {
+    font-weight: 600;
+    text-align: right;
+    word-break: break-word;
+  }
+
+  .error {
+    color: #ff8080;
+    font-size: 0.9rem;
+    margin: -8px 0 20px;
+  }
+
+  .hint {
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin: 14px 0 0;
+  }
+
+  @media (max-width: 400px) {
+    .card {
+      padding: 36px 24px;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="stack">
+    <div class="card">
+      <h1>Pritish</h1>
+      <p class="subtitle">Hi, I'm Pritish.</p>
+      <ul>
+        <li>🏏 Play cricket</li>
+        <li>🚴 Ride bikes</li>
+        <li>✈️ Love travelling</li>
+      </ul>
+      <a class="button" href="mailto:samalpritish9@gmail.com">Email me</a>
+    </div>
+
+    <div class="card">
+      <h2>JPG Reader</h2>
+      <p class="subtitle">Drop a JPG, or tap to choose one, to see its details.</p>
+
+      <label class="dropzone" id="dropzone" for="jpgInput">
+        <img id="preview" alt="Selected JPG preview" hidden>
+        <span id="dropzoneText">Tap to choose a JPG<br>or drag one here</span>
+      </label>
+      <input type="file" id="jpgInput" accept=".jpg,.jpeg,image/jpeg" hidden>
+
+      <p id="jpgError" class="error" hidden></p>
+
+      <ul class="info-list" id="jpgInfo" hidden>
+        <li><span>File name</span><strong id="infoName">—</strong></li>
+        <li><span>Pixel size</span><strong id="infoDims">—</strong></li>
+        <li><span>File size</span><strong id="infoSize">—</strong></li>
+        <li><span>Date taken</span><strong id="infoDate">—</strong></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>PNG &rarr; JPG Converter</h2>
+      <p class="subtitle">Drop a PNG, or tap to choose one, to convert it to JPG.</p>
+
+      <label class="dropzone" id="pngDropzone" for="pngInput">
+        <img id="pngPreview" alt="Selected PNG preview" hidden>
+        <span id="pngDropzoneText">Tap to choose a PNG<br>or drag one here</span>
+      </label>
+      <input type="file" id="pngInput" accept=".png,image/png" hidden>
+
+      <p id="pngError" class="error" hidden></p>
+      <p id="pngStatus" class="hint" hidden></p>
+
+      <a class="button" id="pngDownload" hidden>⬇ Download JPG</a>
+    </div>
+
+    <div class="card">
+      <h2>Desktop App</h2>
+      <p class="subtitle">The same reader plus a PNG → JPG converter, packaged as a native Mac app.</p>
+      <a class="button" href="downloads/JPG-Reader-mac.zip" download="JPG-Reader-mac.zip">⬇ Download for Mac</a>
+      <p class="hint">macOS 11+ · Apple Silicon (arm64) · unsigned — right‑click the app → Open on first launch</p>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      const dropzone = document.getElementById('dropzone');
+      const input = document.getElementById('jpgInput');
+      const preview = document.getElementById('preview');
+      const dropzoneText = document.getElementById('dropzoneText');
+      const errorBox = document.getElementById('jpgError');
+      const infoList = document.getElementById('jpgInfo');
+      const infoName = document.getElementById('infoName');
+      const infoDims = document.getElementById('infoDims');
+      const infoSize = document.getElementById('infoSize');
+      const infoDate = document.getElementById('infoDate');
+
+      function formatSize(bytes) {
+        const units = ['B', 'KB', 'MB', 'GB'];
+        let num = bytes;
+        for (const unit of units) {
+          if (num < 1024) return `${num.toFixed(1)} ${unit}`;
+          num /= 1024;
+        }
+        return `${num.toFixed(1)} TB`;
+      }
+
+      function showError(message) {
+        errorBox.textContent = message;
+        errorBox.hidden = false;
+        infoList.hidden = true;
+      }
+
+      function clearError() {
+        errorBox.hidden = true;
+        errorBox.textContent = '';
+      }
+
+      function getImageDimensions(url) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve({ width: img.naturalWidth, height: img.naturalHeight });
+          img.onerror = () => resolve(null);
+          img.src = url;
+        });
+      }
+
+      // Minimal EXIF DateTimeOriginal reader (tag 0x9003) — no external libraries.
+      function parseExifDate(buffer) {
+        try {
+          const view = new DataView(buffer);
+          if (view.getUint16(0) !== 0xffd8) return null;
+
+          let offset = 2;
+          while (offset < view.byteLength - 4) {
+            const marker = view.getUint16(offset);
+            if (marker === 0xffe1) {
+              return readExifSegment(view, offset + 4);
+            }
+            if ((marker & 0xff00) !== 0xff00) break;
+            offset += 2 + view.getUint16(offset + 2);
+          }
+        } catch (e) {
+          // fall through
+        }
+        return null;
+      }
+
+      function readExifSegment(view, start) {
+        if (
+          view.getUint32(start) !== 0x45786966 ||
+          view.getUint16(start + 4) !== 0x0000
+        ) {
+          return null;
+        }
+
+        const tiffStart = start + 6;
+        const little = view.getUint16(tiffStart) === 0x4949;
+        const ifd0Offset = tiffStart + view.getUint32(tiffStart + 4, little);
+
+        const exifIfdOffset = findTag(view, tiffStart, ifd0Offset, little, 0x8769);
+        if (exifIfdOffset === null) return null;
+
+        const dateBytes = findAsciiTag(view, tiffStart, tiffStart + exifIfdOffset, little, 0x9003);
+        return dateBytes;
+      }
+
+      function findTag(view, tiffStart, ifdOffset, little, targetTag) {
+        const count = view.getUint16(ifdOffset, little);
+        for (let i = 0; i < count; i++) {
+          const entry = ifdOffset + 2 + i * 12;
+          const tag = view.getUint16(entry, little);
+          if (tag === targetTag) {
+            return view.getUint32(entry + 8, little);
+          }
+        }
+        return null;
+      }
+
+      function findAsciiTag(view, tiffStart, ifdOffset, little, targetTag) {
+        const count = view.getUint16(ifdOffset, little);
+        for (let i = 0; i < count; i++) {
+          const entry = ifdOffset + 2 + i * 12;
+          const tag = view.getUint16(entry, little);
+          if (tag === targetTag) {
+            const len = view.getUint32(entry + 4, little);
+            const valueOffset = len <= 4 ? entry + 8 : tiffStart + view.getUint32(entry + 8, little);
+            let str = '';
+            for (let j = 0; j < len - 1; j++) {
+              str += String.fromCharCode(view.getUint8(valueOffset + j));
+            }
+            return str || null;
+          }
+        }
+        return null;
+      }
+
+      async function handleFile(file) {
+        if (!file) return;
+
+        const isJpeg = file.type === 'image/jpeg' || /\.(jpe?g)$/i.test(file.name);
+        if (!isJpeg) {
+          showError('Please choose a JPG file (the Mac app can convert PNG → JPG for you).');
+          return;
+        }
+        clearError();
+
+        const url = URL.createObjectURL(file);
+        preview.src = url;
+        preview.hidden = false;
+        dropzoneText.textContent = file.name;
+
+        const [dims, buffer] = await Promise.all([
+          getImageDimensions(url),
+          file.arrayBuffer(),
+        ]);
+        const dateTaken = parseExifDate(buffer);
+
+        infoName.textContent = file.name;
+        infoDims.textContent = dims ? `${dims.width} × ${dims.height}` : 'Not available';
+        infoSize.textContent = formatSize(file.size);
+        infoDate.textContent = dateTaken || 'Not available';
+        infoList.hidden = false;
+      }
+
+      input.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+      ['dragover', 'dragenter'].forEach((evt) =>
+        dropzone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('drag-over');
+        })
+      );
+
+      ['dragleave', 'dragend'].forEach((evt) =>
+        dropzone.addEventListener(evt, () => dropzone.classList.remove('drag-over'))
+      );
+
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('drag-over');
+        handleFile(e.dataTransfer.files[0]);
+      });
+
+      // --- PNG -> JPG converter ---
+      const pngDropzone = document.getElementById('pngDropzone');
+      const pngInput = document.getElementById('pngInput');
+      const pngPreview = document.getElementById('pngPreview');
+      const pngDropzoneText = document.getElementById('pngDropzoneText');
+      const pngError = document.getElementById('pngError');
+      const pngStatus = document.getElementById('pngStatus');
+      const pngDownload = document.getElementById('pngDownload');
+
+      function showPngError(message) {
+        pngError.textContent = message;
+        pngError.hidden = false;
+        pngStatus.hidden = true;
+        pngDownload.hidden = true;
+      }
+
+      function clearPngError() {
+        pngError.hidden = true;
+        pngError.textContent = '';
+      }
+
+      async function handlePng(file) {
+        if (!file) return;
+
+        const isPng = file.type === 'image/png' || /\.png$/i.test(file.name);
+        if (!isPng) {
+          showPngError('Please choose a PNG file.');
+          return;
+        }
+        clearPngError();
+        pngStatus.hidden = true;
+        pngDownload.hidden = true;
+
+        const url = URL.createObjectURL(file);
+        pngPreview.src = url;
+        pngPreview.hidden = false;
+        pngDropzoneText.textContent = file.name;
+
+        try {
+          const img = new Image();
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = () => reject(new Error('could not load image'));
+            img.src = url;
+          });
+
+          const canvas = document.createElement('canvas');
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          const ctx = canvas.getContext('2d');
+          // Flatten transparency onto white, same as the desktop converter.
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.drawImage(img, 0, 0);
+
+          const blob = await new Promise((resolve) => canvas.toBlob(resolve, 'image/jpeg', 0.92));
+          if (!blob) throw new Error('conversion failed');
+
+          const jpgUrl = URL.createObjectURL(blob);
+          const jpgName = file.name.replace(/\.png$/i, '') + '.jpg';
+          pngDownload.href = jpgUrl;
+          pngDownload.download = jpgName;
+          pngDownload.hidden = false;
+          pngStatus.textContent = `Converted to ${jpgName} (${formatSize(blob.size)})`;
+          pngStatus.hidden = false;
+        } catch (e) {
+          showPngError('Could not convert this image.');
+        }
+      }
+
+      pngInput.addEventListener('change', (e) => handlePng(e.target.files[0]));
+
+      ['dragover', 'dragenter'].forEach((evt) =>
+        pngDropzone.addEventListener(evt, (e) => {
+          e.preventDefault();
+          pngDropzone.classList.add('drag-over');
+        })
+      );
+
+      ['dragleave', 'dragend'].forEach((evt) =>
+        pngDropzone.addEventListener(evt, () => pngDropzone.classList.remove('drag-over'))
+      );
+
+      pngDropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        pngDropzone.classList.remove('drag-over');
+        handlePng(e.dataTransfer.files[0]);
+      });
+    })();
+  </script>
+</body>
+</html>
